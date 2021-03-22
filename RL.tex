@@ -1,0 +1,76 @@
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ % @File    : c:\Users\Administrator\Desktop\白板学习笔记\数学部分\RL_math.tex
+ % @Date    : 2021-01-25 21:49:30
+ % @Author  : RankFan
+ % @Email   : 1917703489@qq.com
+ % -----
+ % Last Modified: 2021-02-07 16:55:03
+ % Modified By: Rank_fan
+ % -----
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+ %%============================宏包=======================================%
+\documentclass[11pt]{article}
+\usepackage{ctex}
+%\usepackage[left=1.25in,right=1.25in,top=1in,bottom=1in]{geometry}
+\input{mp-style2.tex}
+ \usepackage{amsmath}
+ \usepackage{booktabs}
+ \usepackage{amsthm}
+ \usepackage{graphicx}
+ \usepackage{amssymb}
+ \usepackage{authblk}
+ 
+ \usepackage{tikz}  % tikz
+ \usepackage[left=2cm,right=2cm,top=2.5cm,bottom=3cm]{geometry} % 页面设置
+ \usepackage[bookmarks, bookmarksnumbered ,colorlinks, linkcolor = blue, citecolor = myred ]{hyperref} %超链接
+ %\usepackage{fontspec}  % for Consolas
+ \definecolor{myred}{rgb}{153, 0, 0}
+
+ \tikzset{>=stealth}
+ \usetikzlibrary{arrows,shapes,positioning,matrix}
+
+ %%============================NewComman=======================================%
+ \newcommand*{\email}[1]{%
+    \normalsize\href{mailto:#1}{#1}\par
+    }
+\newcommand{\tikzmark}[3][]
+    {\tikz[remember picture, baseline]
+      \node [anchor=base,#1](#2) {#3};
+      }
+%%============================定理环境=======================================%
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{myproof}{Proof}[section]
+\newtheorem{myexample}{Example}[section]
+%%============================命令更新=======================================%
+\renewcommand \Authands{ \&  } 
+
+%%============================计数器设置=======================================%
+ \numberwithin{equation}{section}
+ \numberwithin{figure}{section}
+ \graphicspath{{figures/}}
+
+ %%================================== 设置中文字体 ================================%
+\xeCJKsetup{AutoFakeBold=true}
+\setCJKmainfont{FZShuSong-Z01}[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]
+\setCJKsansfont{FZHei-B01}
+\setCJKmonofont{FZShuSong-Z01}
+%================================== 设置英文字体 ================================%TeX Gyre Pagella
+\setmainfont[Mapping=tex-text]{Times New Roman}%--------------------------------英文衬线字体
+% \setmainfont{TeX Gyre Pagella}
+
+
+ \title{机器学习--数学部分}
+ \author[1]{RankFan \thanks{fanxiaolong98@gmail.com}}
+ \author[2]{JIE \thanks{fanxiaolong98@gmail.com}}
+ \affil[1] {公众号：经济知识综合 }
+ \affil[2] {公众号：经济知识综合 }
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\include{sections/RL_math}
+
+\end{document}

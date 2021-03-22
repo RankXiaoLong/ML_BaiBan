@@ -1,0 +1,63 @@
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ % @File    : c:\Users\Administrator\Desktop\白板学习笔记\数学部分\RL_math.tex
+ % @Date    : 2021-01-25 21:49:30
+ % @Author  : RankFan
+ % @Email   : 1917703489@qq.com
+ % -----
+ % Last Modified: 2021-01-25 21:58:59
+ % Modified By: Rank_fan
+ % -----
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+ %%============================宏包=======================================%
+\documentclass[11pt]{article}
+\usepackage{ctex}
+ \usepackage{amsmath}
+ \usepackage{booktabs}
+ \usepackage{amsthm}
+ \usepackage{xcolor}
+ \usepackage{graphicx}
+ \usepackage{amssymb}
+ \usepackage{authblk}
+ \usepackage{tikz}  % tikz
+ \usepackage[left=2cm,right=2cm,top=2.5cm,bottom=3cm]{geometry} % 页面设置
+ \usepackage[bookmarks, bookmarksnumbered ,colorlinks, linkcolor = blue, citecolor = myred ]{hyperref} %超链接
+ \definecolor{myred}{rgb}{153, 0, 0}
+
+ \tikzset{>=stealth}
+ \usetikzlibrary{arrows,shapes,positioning,matrix}
+
+ %%============================NewComman=======================================%
+ \newcommand*{\email}[1]{%
+    \normalsize\href{mailto:#1}{#1}\par
+    }
+\newcommand{\tikzmark}[3][]
+    {\tikz[remember picture, baseline]
+      \node [anchor=base,#1](#2) {#3};
+      }
+
+%%============================计数器设置=======================================%
+ \numberwithin{equation}{section}
+ \numberwithin{figure}{section}
+ \graphicspath{{figures/}}
+
+ %%================================== 设置中文字体 ================================%
+\xeCJKsetup{AutoFakeBold=true}
+\setCJKmainfont{FZShuSong-Z01}[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]
+\setCJKsansfont{FZHei-B01}
+\setCJKmonofont{FZShuSong-Z01}
+%================================== 设置英文字体 ================================%TeX Gyre Pagella
+\setmainfont[Mapping=tex-text]{Times New Roman}%--------------------------------英文衬线字体
+% \setmainfont{TeX Gyre Pagella}
+
+ \title{机器学习--数学部分}
+ \author{Rank}
+ \affil{公众号：经济知识综合 \\ \email{fanxiaolong98@gmail.com}}
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\section{多维高斯分布}
+\end{document}

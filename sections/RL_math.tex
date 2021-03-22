@@ -1,0 +1,207 @@
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+ % @File    : c:\Users\Administrator\Desktop\白板学习笔记\数学部分\RL_math.tex
+ % @Date    : 2021-01-25 21:49:30
+ % @Author  : RankFan
+ % @Email   : 1917703489@qq.com
+ % -----
+ % Last Modified: 2021-02-28 18:43:38
+ % Modified By: RankXiaoLong
+ % -----
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+ %%============================宏包=======================================%
+ \section{多维高斯分布}
+ $ \boldsymbol{x} \in \mathbb{R}^{p} $ , $ \boldsymbol{x} $ 是一个随机变量。
+\[  \boldsymbol{x} \sim N(\mu,\Omega) \]
+\[ p(\boldsymbol{x})= \frac{1}{{2 \pi}^{\frac{p}{2}} \left| \Omega \right|^{\frac{1}{2}}  } 
+        exp\{  -\frac{1}{2} {\left( \boldsymbol{x - \mu}  \right)}^{T} \boldsymbol{\Omega^{-1}} \left( \boldsymbol{x - \mu}  \right)\} \]  
+        
+ $\boldsymbol{\Omega} $是正定阵，一般是半正定阵.通常而言是半正定的对称阵。
+\[       \boldsymbol{x} =  \begin{pmatrix}
+            x_1 \\
+            x_2 \\
+            \vdots\\
+            x_p
+        \end{pmatrix} \quad 
+        \boldsymbol{\mu } =  \begin{pmatrix}
+            \mu_1 \\
+            \mu_2 \\
+            \vdots\\
+            \mu_p
+        \end{pmatrix} \quad
+        \boldsymbol{\Omega} =   \begin{pmatrix}
+            \sigma_{11} & \sigma_{12} & \cdots & \sigma_{1p} \\
+            \sigma_{21} & \sigma_{22} & \cdots & \sigma_{2p}\\
+            \vdots&\vdots&  \ddots &\vdots \\\
+            \sigma_{p1} & \sigma_{p2} & \cdots & \sigma_{pp}
+           \end{pmatrix} \] 
+
+  $  {\left( \boldsymbol{x - \mu}  \right)}^{\prime} \boldsymbol{\Omega^{-1}} \left( \boldsymbol{x - \mu}  \right) $  可以看做是一个关于
+  $ \boldsymbol{x} , \boldsymbol{\mu}$ 之间的一个马氏距离。 $ \boldsymbol{\Sigma} = \boldsymbol{\Omega}^{-1} $ 为精度矩阵。
+
+  \subsection{马氏距离}
+  \begin{myexample}[马氏距离的定义]
+    \[ \boldsymbol{z_1} = 
+    \begin{pmatrix}
+        z_{11} \\
+        z_{12}
+    \end{pmatrix} \quad 
+    \boldsymbol{z_2} = 
+    \begin{pmatrix}
+        z_{21} \\
+        z_{22}
+    \end{pmatrix} \]
+    \[
+        \boldsymbol{(z_{1} -z_{2})}^{T} \Omega^{-1} \boldsymbol{(z_{1} -z_{2})} = 
+        \left( z_{11}- z_{21}, z_{12}- z_{22}\right)  \boldsymbol{\Omega^{-1}} 
+        \begin{pmatrix}
+            z_{11}- z_{21} \\
+            z_{12}- z_{22}
+        \end{pmatrix} \]
+        
+        马氏距离与欧式距离的联系：$ \boldsymbol{\Omega = I} $时，马氏距离 = 欧式距离。
+  \end{myexample}
+  \begin{mydef}[方差矩阵]
+    \[ \boldsymbol{\Omega  = U \Lambda U^{T} } \]
+
+    $ \boldsymbol{\Omega} $是对称正定阵，可进行矩阵分解。$ diag(\lambda_{i}) $是对角矩阵。$ \boldsymbol{\Omega} $可以对称正交化。
+  \begin{align*}
+    \boldsymbol{ UU^{T}}  & = ~ \boldsymbol{U^{T} U   = I} \\
+    \boldsymbol{\Lambda} & = ~ diag(\lambda_{i} ) \quad i = 1 , 2 ,\ldots ,p\\
+    \boldsymbol{U} & = ~ \boldsymbol{( u_1,u_2,\cdots, u_p)}; \quad 
+    \boldsymbol{u_i} ~~ is ~~ a  ~~ column ~~ vector (p \times 1),\| \boldsymbol{u_i} \| = 1 \\
+    \Longrightarrow \qquad \boldsymbol{\Omega}  & = ( \boldsymbol{u_1,u_2,\cdots, u_p})  
+    \begin{pmatrix}
+        \lambda_{1} &  &  &  \\
+        & \lambda_{2} & & \\
+        & &  \ddots & \\\
+        &  &  & \lambda_{p}
+       \end{pmatrix}   
+       \begin{pmatrix}
+        \boldsymbol{u_1^{T}} \\
+        \boldsymbol{u_2^{T}} \\
+        \vdots\\
+        \boldsymbol{u_p^{T}}
+    \end{pmatrix} \\
+    & = ( \boldsymbol{u_1} \lambda_{1} ,\boldsymbol{u_2} \lambda_{2} ,\cdots, \boldsymbol{u_p} \lambda_{p} ) 
+     \begin{pmatrix}
+        \boldsymbol{u_1^{T}} \\
+        \boldsymbol{u_2^{T}} \\
+        \vdots\\
+        \boldsymbol{u_p^{T}}
+     \end{pmatrix}  = \sum_{i = 1}^{p} \boldsymbol{u_{i}} \lambda_{i} \boldsymbol{u_{i}^{T}}
+  \end{align*}
+\end{mydef}
+  \begin{align*}      
+    \Longrightarrow \qquad \boldsymbol{\Omega^{-1}}  & = \boldsymbol{ \left( U \Lambda U^{T} \right) }^{-1} = \boldsymbol{U \Lambda^{-1} U^{T}} \\ 
+    \boldsymbol{\Lambda^{-1}} &  = ~ diag(\lambda_{i}^{-1}) \quad i = 1 , 2 ,\ldots ,p \\
+    \boldsymbol{\Omega^{-1}} &  = \sum_{i = 1}^{p} \boldsymbol{u_{i}} \lambda_{i}^{-1} \boldsymbol{u_{i}^{T}}  \\
+    \Longrightarrow \qquad 
+    {\left( \boldsymbol{x - \mu}  \right)}^{T} \boldsymbol{\Omega^{-1}} \left( \boldsymbol{x - \mu}  \right) 
+    & =  {\left( \boldsymbol{x - \mu}  \right)}^{T}  \sum_{i = 1}^{p} \boldsymbol{u_{i}} \lambda_{i}^{-1} \boldsymbol{u_{i}^{T}}  
+      \left( \boldsymbol{x - \mu}  \right) \\
+    & =  \sum_{i = 1}^{p} {\left( \boldsymbol{x - \mu}  \right)}^{T}   \boldsymbol{u_{i}} \lambda_{i}^{-1} \boldsymbol{u_{i}^{T}} \left( \boldsymbol{x - \mu}  \right)  
+  \end{align*}
+
+  令$ y_{i} = {\left( \boldsymbol{x - \mu}  \right)}^{T}   \boldsymbol{u_{i}}$ ,  $ y_{i} $ 是一个标量， 几何意义是
+  $ {\left( \boldsymbol{x - \mu}  \right)}^{T} $ 在 $ \boldsymbol{u_{i}}$ 上的投影。
+$  \boldsymbol{y} = \begin{pmatrix}
+        y_1 \\
+        y_2 \\
+        \vdots\\
+        y_p
+    \end{pmatrix}$
+\[ \Longrightarrow \qquad {\left( \boldsymbol{x - \mu}  \right)}^{T} \boldsymbol{\Omega^{-1}} \left( \boldsymbol{x - \mu}  \right) 
+              =   \sum_{i = 1}^{p} y_{i} {\lambda_{i}}^{-1} y_{i}  = \sum_{i = 1}^{p} y_{i}^{2} {\lambda_{i}}^{-1} \]
+
+   令$p = 2$，即二维。\eqref{eq 1.1} 几何意义是二维平面中的一个椭圆
+   \begin{equation} 
+        \therefore \qquad {\left( \boldsymbol{x - \mu}  \right)}^{T} \boldsymbol{\Omega^{-1}} \left( \boldsymbol{x - \mu}  \right) 
+                =  \frac{y_{1}^{2} }{\lambda_{1}} + \frac{y_{2}^{2} }{\lambda_{2}} = constant 
+        \label{eq 1.1}
+   \end{equation}
+   
+   假设$\lambda_{1} > \lambda_{2} $，椭圆的长半径为 $\lambda_{1} /2 $ ，短半径为$\lambda_{2} /2 $。
+   \begin{figure}[ht]
+    \centering
+    \includegraphics[scale = 0.5]{Ellipse.pdf}
+    \caption{ p = 2 时 马氏距离的几何意义}
+   \end{figure}
+
+   如果是$p = 3$，即三维。其几何意义就是切不同的等高线。
+   \[ \frac{y_{1}^{2} }{\lambda_{1}} + \frac{y_{2}^{2} }{\lambda_{2}} + \frac{y_{3}^{2} }{\lambda_{3}} = constant \]
+
+   二维高斯分布经常用椭圆等高线表达。
+   
+   \begin{myexample}[问题]
+    什么样的矩阵可以写成这种形式？
+    \[ \boldsymbol{\Omega  = U \Lambda U^{T} } \]
+   \end{myexample}
+
+   总结：
+   \begin{align*}
+        Summary: \quad \Delta & = {\left( \boldsymbol{x - \mu}  \right)}^{T} 
+        \boldsymbol{\Omega^{-1}} \left( \boldsymbol{x - \mu}  \right)
+      = \sum_{i = 1}^{p} y_{i}^{2} {\lambda_{i}}^{-1}  \\
+      p(\boldsymbol{x}) & = \frac{1}{{2 \pi}^{\frac{p}{2}} \left| \Omega \right|^{\frac{1}{2}} }  exp\{ \Delta \}
+   \end{align*}
+
+   其中$ y_{i} = {\left( \boldsymbol{x - \mu}  \right)}^{T}   \boldsymbol{u_{i}}$，$  \boldsymbol{y} = \begin{pmatrix}
+    y_1 \\
+    y_2 \\
+    \vdots\\
+    y_p
+\end{pmatrix}$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ \begin{Matlab}{MATLAB Code}
+  Euler method for the ODE model
+  u'(x)=x^2+x-u, x in [0,1]
+  Initial condition: u(0)=0 ;
+  Exact solution: u(x)=-exp(-x)+x^2-x+1.
+  clear all;  clf
+  \end{Matlab}
+  
+  \centerline{Python Code}
+  \vspace{3ex}
+  
+  \begin{Python}{Python Code}
+  #PythonDraw.py
+  import turtle as t
+  \end{Python}
